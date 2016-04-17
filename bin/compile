@@ -1,0 +1,23 @@
+#!/bin/sh -e
+
+BUILD_DIR="$1"
+CACHE_DIR="$2"
+ENV_DIR="$3"
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+log() {
+	echo "-----> $1"
+}
+
+log "Running artifact-build.sh:"
+if [ -f "$BUILD_DIR/artifact-build.sh" ]; then
+	(cd $BUILD_DIR && sh artifact-build.sh $CACHE_DIR $ENV_DIR) | indent
+else
+	echo "ERROR: artifact-build.sh script not found!" | indent
+	exit 1
+fi
+
+exit 0

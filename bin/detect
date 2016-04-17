@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+if [ -f "$1/artifact-build.sh" ]; then
+	echo "Artifact Build Detected"
+	exit 0
+fi
+
+exit 1
